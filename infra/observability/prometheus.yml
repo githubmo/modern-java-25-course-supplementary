@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 10s
+
+scrape_configs:
+  - job_name: kyc-service
+    metrics_path: /q/metrics
+    static_configs:
+      - targets: ["kyc-service:8080"]
+  - job_name: otel-collector
+    static_configs:
+      - targets: ["otel-collector:8889"]
