@@ -1,0 +1,39 @@
+# Java / Maven
+target/
+.mvn/wrapper/maven-wrapper.jar
+*.class
+
+# Quarkus
+.quarkus/
+
+# Node / Slidev
+node_modules/
+slides/**/dist/
+# rendered deck artifacts + transient export scratch files
+slides/export/
+slides/_flat-*.md
+slides/*-export.pptx
+
+# Student pack — generated artifacts (the multi-module project IS committed; these are not)
+student-pack/slides/
+dist/
+
+# Attendee survey — contains personal data (names + emails); keep local only
+course/survey.xlsx
+
+# Python / uv
+.venv/
+__pycache__/
+*.pyc
+diagrams/.venv/
+
+# MkDocs build output
+docs/site/
+
+# OS / editor
+.DS_Store
+.idea/
+*.iml
+
+# NOTE: generated diagrams under docs/assets/diagrams ARE committed (source of truth is the
+# .py, but the rendered SVGs are kept so the docs build and Git previews work without Python).
