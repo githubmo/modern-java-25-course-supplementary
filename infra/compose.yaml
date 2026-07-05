@@ -23,6 +23,14 @@ services:
       timeout: 3s
       retries: 10
 
+  adminer:
+    image: adminer
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - 18080:8080
+
   kafka:
     image: apache/kafka:3.8.1
     ports: ["${KAFKA_INTERNAL_HOST_PORT:-9092}:9092", "${KAFKA_HOST_PORT:-29092}:29092"]
