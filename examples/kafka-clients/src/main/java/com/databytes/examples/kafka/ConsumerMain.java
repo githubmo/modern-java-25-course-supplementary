@@ -3,6 +3,7 @@ package com.databytes.examples.kafka;
 import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -46,17 +47,21 @@ public final class ConsumerMain {
                 + " topic=" + TOPIC + " group=" + GROUP_ID + " ==");
         System.out.println("   (will exit after ~" + MAX_EMPTY_POLLS + "s with no new records)");
 
+        var shutdown = new AtomicBoolean(false);
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            IO.println("== Shutting down ==");
+            shutdown.set(true);
+        }));
+
         try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props)) {
             consumer.subscribe(List.of(TOPIC));
 
-            int emptyPolls = 0;
-            while (emptyPolls < MAX_EMPTY_POLLS) {
+            while (!shutdown.get()) {
                 ConsumerRecords<String, String> records = consumer.poll(POLL_TIMEOUT);
                 if (records.isEmpty()) {
-                    emptyPolls++;
                     continue;
                 }
-                emptyPolls = 0;
                 for (ConsumerRecord<String, String> record : records) {
                     System.out.println("    partition=%d offset=%d key=%s value=%s".formatted(
                             record.partition(), record.offset(), record.key(), record.value()));
