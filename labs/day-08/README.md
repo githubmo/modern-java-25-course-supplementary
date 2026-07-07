@@ -2,6 +2,8 @@
 
 > Starting point: `git checkout checkpoint/day-07` (a clean repo, no app yet) — or the provided
 > `starter/`. You will generate the app from scratch with the `quarkus` CLI.
+>
+> Just want to see how it fits without the build? Copy the finished code: [`COPY-ALONG.md`](./COPY-ALONG.md).
 
 ## Objective
 

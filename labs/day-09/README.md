@@ -2,6 +2,8 @@
 
 > Starting point: `git checkout checkpoint/day-08` (the KYC Service skeleton with an in-memory
 > store). Solution to check against: `git checkout checkpoint/day-09`.
+>
+> Just want to see how it fits without the build? Copy the finished code: [`COPY-ALONG.md`](./COPY-ALONG.md).
 
 ## Objective
 
